@@ -7,7 +7,9 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.io.Serializable;
+import java.util.List;
 
 @Named("dao")
 @SessionScoped
@@ -29,6 +31,12 @@ public class DAO implements Serializable{
         entitymanager.getTransaction().commit();
         entitymanager.close();
         emfactory.close();
+    }
+
+    public List<String> getGroupList() {
+        Query query = entitymanager.createQuery("Select g.groupName FROM UniverGroup g");
+        List<String> list = query.getResultList();
+        return list;
     }
 
 }
