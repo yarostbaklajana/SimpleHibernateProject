@@ -1,11 +1,16 @@
 package entities;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Entity
 @Table(name = "univergroup")
+@Named("univerGroup")
+@SessionScoped
 public class UniverGroup implements Serializable{
     private static final long serialVersionUID = 1L;
 
