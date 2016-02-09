@@ -3,6 +3,7 @@ package dao;
 import entities.UniverGroup;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,9 +12,9 @@ import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 
-@Named("dao")
-@SessionScoped
-public class DAOImpl implements Serializable{
+
+
+public class DAOImpl implements Serializable, DAO {
     private static final long serialVersionUID = 3L;
 
     private EntityManagerFactory emfactory;
@@ -24,6 +25,7 @@ public class DAOImpl implements Serializable{
         entitymanager = emfactory.createEntityManager( );
     }
 
+    @Override
     public void createGroup(String groupName) {
         entitymanager.getTransaction( ).begin();
         UniverGroup group = new UniverGroup();
@@ -34,6 +36,7 @@ public class DAOImpl implements Serializable{
         emfactory.close();
     }
 
+    @Override
     public List<String> getGroupList() {
         Query query = entitymanager.createQuery("Select g.groupName FROM UniverGroup g");
         List<String> list = query.getResultList();
