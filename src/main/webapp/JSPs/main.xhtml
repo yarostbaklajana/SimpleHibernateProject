@@ -6,11 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css"></link>
     <title>HbSP | Groups</title>
 </h:head>
-<h:body>
-    <h:dataTable value="#{controller.listOfGroups}" var="item">
-        <h:column>#{item}</h:column>
+<h:body class="body">
+<h:link class="link" value="Add Group" outcome="add"></h:link>
+    <h:dataTable class="table" value="#{controller.listOfGroups}" var="item">
+        <h:column class="column">#{item}</h:column>
+        <h:column class="column"><h:commandButton value="Delete Group"></h:commandButton></h:column>
     </h:dataTable>
 </h:body>
 </html>
