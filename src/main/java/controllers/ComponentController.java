@@ -26,7 +26,7 @@ public class ComponentController implements Serializable{
         return dao.getGroupList();
     }
 
-    public void setGroup(String groupName) {
+    public void createGroup(String groupName) {
         dao.createGroup(groupName);
     }
 }
