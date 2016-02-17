@@ -41,14 +41,17 @@ public class DAOImpl implements Serializable, DAO {
     }
 
     @Override
-    public List<String> getGroupList() {
-        Query query = entitymanager.createQuery("Select g.groupName FROM UniverGroup g");
-        List<String> list = query.getResultList();
-        return list;
+    public List<UniverGroup> getGroupList() {
+        Query query = entitymanager.createQuery("Select g FROM UniverGroup g");
+        List<UniverGroup> list = query.getResultList();
+        return (List<UniverGroup>) list;
     }
 
     @Override
-    public void deleteGroup() {
-
+    public void deleteGroup(int id) {
+        entitymanager.getTransaction( ).begin();
+        Query query = entitymanager.createNativeQuery("DELETE FROM UniverGroup WHERE id = " + id);
+        query.executeUpdate();
+        entitymanager.getTransaction().commit();
     }
 }

@@ -1,6 +1,6 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "univergroup")
 @Named("univerGroup")
-@SessionScoped
+@RequestScoped
 public class UniverGroup implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -42,9 +42,5 @@ public class UniverGroup implements Serializable{
     public String getGroupName() {
         return groupName;
 
-    }
-
-    public String toString() {
-        return this.getId() + " - " + this.getGroupName();
     }
 }

@@ -10,9 +10,19 @@
 </h:head>
 <h:body class="body">
 <h:link class="link" value="Add Group" outcome="add"></h:link>
-    <h:dataTable class="table" value="#{controller.listOfGroups}" var="item">
-        <h:column class="column">#{item}</h:column>
-        <h:column class="column"><h:commandButton value="Delete Group"></h:commandButton></h:column>
+    <h:form>
+    <h:dataTable class="table" value="#{controller.listOfGroups}" var="group">
+        <h:column class="column">
+            #{group.groupName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Delete</f:facet>
+            <h:commandButton value="Delete"
+                             action="#{controller.deleteGroup(group.id)}">
+            </h:commandButton>
+        </h:column>
+
     </h:dataTable>
+    </h:form>
 </h:body>
 </html>

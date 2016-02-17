@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,11 +23,15 @@ public class ComponentController implements Serializable{
     }
 
 
-    public List<String> getListOfGroups() {
-        return dao.getGroupList();
+    public List<UniverGroup> getListOfGroups() {
+        return (List<UniverGroup>) dao.getGroupList();
     }
 
     public void createGroup(String groupName) {
         dao.createGroup(groupName);
+    }
+
+    public void deleteGroup(int id) {
+        dao.deleteGroup(id);
     }
 }
