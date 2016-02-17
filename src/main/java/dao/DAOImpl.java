@@ -2,13 +2,12 @@ package dao;
 
 import entities.UniverGroup;
 
-import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Default;
-import javax.inject.Named;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class DAOImpl implements Serializable, DAO {
     private EntityManager entitymanager;
 
     public DAOImpl() {
-        emfactory = Persistence.createEntityManagerFactory("yarostbaklajana.Group");
+        emfactory = Persistence.createEntityManagerFactory("yarosGroup");
         entitymanager = emfactory.createEntityManager( );
     }
 
@@ -34,6 +33,11 @@ public class DAOImpl implements Serializable, DAO {
         entitymanager.getTransaction().commit();
         entitymanager.close();
         emfactory.close();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("main.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -43,6 +47,8 @@ public class DAOImpl implements Serializable, DAO {
         return list;
     }
 
+    @Override
+    public void deleteGroup() {
 
-
+    }
 }
